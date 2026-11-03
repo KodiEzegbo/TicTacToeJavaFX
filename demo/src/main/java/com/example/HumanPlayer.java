@@ -19,7 +19,7 @@ public class HumanPlayer extends Player {
      * @throws IllegalArgumentException if {@code marker} is not {@code X} or {@code O}
      */
     public HumanPlayer(char marker, Scanner scanner) {
-        super(marker);
+        super(marker, "Player #1");
         this.scanner = Objects.requireNonNull(scanner, "scanner");
     }
 

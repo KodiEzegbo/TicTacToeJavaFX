@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -99,17 +100,29 @@ public class App extends Application {
     private boolean finishIfGameOver(Player lastPlayer) {
         if (board.checkWin()) {
             gameOver = true;
-            status.setText(lastPlayer.getName() + " (" + lastPlayer.getMarker() + ") wins!");
+            String result = lastPlayer.getName() + " (" + lastPlayer.getMarker() + ") WINS!";
+            status.setText(result);
             refreshBoard();
+            showGameOverAlert(result.toUpperCase());
             return true;
         }
         if (board.isFull()) {
             gameOver = true;
-            status.setText("It's a draw.");
+            String result = "IT'S A DRAW!";
+            status.setText(result);
             refreshBoard();
+            showGameOverAlert(result);
             return true;
         }
         return false;
+    }
+
+    private void showGameOverAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("GAME OVER");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void refreshBoard() {
